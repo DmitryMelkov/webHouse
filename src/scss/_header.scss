@@ -1,0 +1,319 @@
+@import "_variables";
+@import "_mixins";
+
+.header {
+  position: relative;
+  //top
+  &__top-container {
+    padding: 28px 15px;
+    border-bottom: 1px solid rgba(51, 51, 51, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__contacts {
+    display: flex;
+    align-items: center;
+  }
+  &__descr {
+    margin-right: 30px;
+    @include text(14px, 140%, 400, $colorTypograthy);
+  }
+  &__number {
+    margin-right: 40px;
+    @include text(16px, 20px, 600, $colorTypograthy);
+    transition: color 0.3s ease-in-out;
+  }
+
+  &__btn {
+    padding: 16px 28px;
+    max-width: 222px;
+    height: 52px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: transparent;
+    border: 1px solid $colorOrange;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 100px;
+    @include text(16px, 20px, 500, $colorOrange);
+
+    transition: color, background-color 0.3s ease-in-out;
+  }
+  &__btn-svg {
+    margin-right: 8px;
+
+    @include svg-icon(20px, 20px, $colorOrange);
+
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    transition: color 0.3s ease-in-out;
+  }
+  //bottom
+  &__bottom-container {
+    padding: 28px 15px;
+  }
+  &__nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  &__list-item {
+    margin-right: 10px;
+  }
+  &__list-item:last-child {
+    margin-right: 0;
+    position: relative;
+  }
+  &__list-link {
+    @include text(14px, 120%, 500, $colorTypograthy);
+    text-transform: uppercase;
+    transition: color 0.3s ease-in-out;
+  }
+  &__list-select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__list-select::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+
+    width: 0;
+    height: 0;
+    border-width: 7px 7px 0 7px;
+    border-color: $colorTypograthy transparent transparent transparent;
+    border-style: solid;
+
+    pointer-events: none;
+    transition: border-color 0.3s ease-in-out;
+  }
+  &__search-svg {
+    @include svg-icon(24px, 24px, $colorTypograthy);
+    transition: color 0.3s ease-in-out;
+  }
+}
+
+.dropdown {
+  position: relative;
+
+  &__button {
+    position: relative;
+    width: 100%;
+    text-align: left;
+    padding-right: 20px;
+  }
+
+  &__list {
+    width: 352px;
+    display: none;
+
+    position: absolute;
+    left: 0;
+    top: 30px;
+
+    background: $colorWhite;
+    border: 1px solid rgba(51, 51, 51, 0.1);
+    overflow: hidden;
+    z-index: 1;
+  }
+  &__list--visible {
+    display: block;
+  }
+  &__input-hidden {
+    display: none;
+  }
+  &__list-item {
+    margin: 0;
+    padding: 0;
+    @include text(14px, 120%, 500, $colorTypograthy);
+
+    border-bottom: 1px solid rgba(51, 51, 51, 0.1);
+    padding: 13px 30px;
+    cursor: pointer;
+    transition: color, background-color 0.3s ease-in-out;
+  }
+}
+
+//hover
+@media (min-width: 1024px) {
+  .header {
+    &__btn:hover {
+      background-color: $colorOrangeHover;
+      color: $colorWhite;
+    }
+    &__btn:hover &__btn-svg {
+      color: $colorWhite;
+    }
+    &__number:hover {
+      color: $colorOrangeHover;
+    }
+    &__list-link:hover {
+      color: $colorOrangeHover;
+    }
+    &__list-link:hover &__search-svg {
+      @include svg-icon(24px, 24px, $colorOrangeHover);
+    }
+    &__list-link:hover::after {
+      border-color: $colorOrangeHover transparent transparent transparent;
+    }
+  }
+  .dropdown {
+    &__list-item:hover {
+      color: $colorWhite;
+      background-color: $colorOrangeHover;
+    }
+  }
+}
+
+//active, focus
+.header {
+  &__btn:active {
+    background-color: $colorOrangeHover;
+    color: $colorWhite;
+  }
+  &__btn:active &__btn-svg {
+    color: $colorWhite;
+  }
+  &__number:active {
+    color: $colorOrangeHover;
+  }
+  &__btn:focus-visible:not(:active) {
+    background-color: $colorOrangeHover;
+    color: $colorWhite;
+    outline: none;
+  }
+  &__btn:focus-visible:not(:active) &__btn-svg {
+    color: $colorWhite;
+    outline: none;
+  }
+  &__number:focus-visible:not(:active) {
+    color: $colorOrangeHover;
+    outline: none;
+  }
+  &__list-link:active {
+    color: $colorOrangeHover;
+  }
+  &__list-link:focus-visible:not(:active) {
+    color: $colorOrangeHover;
+    outline: none;
+  }
+  &__list-link:active &__search-svg {
+    @include svg-icon(24px, 24px, $colorOrangeHover);
+  }
+  &__list-link:focus-visible:not(:active) &__search-svg {
+    @include svg-icon(24px, 24px, $colorOrangeHover);
+    outline: none;
+  }
+  &__list-link:active::after {
+    border-color: $colorOrangeHover transparent transparent transparent;
+  }
+  &__list-select:focus {
+    color: $colorOrangeHover;
+  }
+  &__list-link:focus::after {
+    border-color: $colorOrangeHover transparent transparent transparent;
+  }
+  .dropdown {
+    &__list-item:active {
+      color: $colorWhite;
+      background-color: $colorOrangeHover;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .header {
+    &__top-container {
+      display: grid;
+      grid-template-columns: repeat(12, 4fr);
+      gap: 10px;
+    }
+    &__descr {
+      grid-column: span 5;
+      margin-right: 0;
+    }
+    &__contacts {
+      margin-right: 0;
+      grid-column: span 7;
+      justify-self: flex-end;
+    }
+    &__bottom {
+      width: 290px;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      z-index: 1;
+      background-color: $colorGreyLight;
+      height: auto;
+      overflow: hidden;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in-out;
+      border-radius: 0 15px 15px 0;
+    }
+    &__bottom.active {
+      overflow: visible;
+      transform: translateX(0%);
+    }
+    &__list {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    &__list-item {
+      margin-right: 0;
+      margin-bottom: 30px;
+    }
+  }
+  .dropdown {
+    &__list {
+      width: 260px;
+      top: 100%;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    &__contacts {
+      flex-direction: column;
+    }
+    &__bottom {
+      top: 40%;
+    }
+    &__number {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+    &__descr {
+      align-self: center;
+    }
+  }
+}
+
+@media (max-width: 456px) {
+  .header {
+    &__bottom {
+      top: 33%;
+    }
+    &__descr {
+      text-align: center;
+      grid-column: span 12;
+      justify-self: center;
+    }
+    &__contacts {
+      grid-column: span 12;
+      justify-self: center;
+    }
+  }
+}

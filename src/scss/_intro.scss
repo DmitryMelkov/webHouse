@@ -1,0 +1,111 @@
+@import "_variables";
+@import "_mixins";
+
+.intro {
+  background-image: url("../img/intro-img.png");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+  min-height: 716px;
+  &__title {
+    max-width: 780px;
+    margin-bottom: 28px;
+  }
+  &__descr {
+    @include text(16px, 22px, 500, $colorWhite);
+    max-width: 780px;
+    margin-bottom: 52px;
+  }
+  &__btns {
+    display: flex;
+  }
+  &__btn-first {
+    margin-right: 72px;
+    padding: 20px 40px;
+    max-width: 362px;
+
+    @include text(18px, 22px, 500, $colorWhite);
+
+    background-color: $colorOrange;
+    border: 1px solid $colorOrange;
+    border-radius: 100px;
+    transition-property: border, background-color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+  }
+  &__btn-second {
+    padding: 20px 40px;
+    max-width: 341px;
+
+    @include text(18px, 22px, 500, $colorWhite);
+
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid $colorWhite;
+    border-radius: 100px;
+
+    transition-property: border, color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+  }
+}
+
+//hover
+@media (min-width: 1024px) {
+  .intro {
+    &__btn-first:hover {
+      background-color: $colorOrangeHover;
+      border: 1px solid $colorOrangeHover;
+    }
+    &__btn-second:hover {
+      border: 1px solid $colorOrange;
+      color: $colorOrange;
+    }
+  }
+}
+
+//active, focus
+.intro {
+  &__btn-first:active {
+    background-color: $colorOrangeHover;
+    border: 1px solid $colorOrangeHover;
+  }
+  &__btn-second:active {
+    border: 1px solid $colorOrange;
+    color: $colorOrange;
+  }
+  &__btn-first:focus-visible:not(:active) {
+    background-color: $colorOrangeHover;
+    border: 1px solid $colorOrangeHover;
+    outline: none;
+  }
+  &__btn-second:focus-visible:not(:active) {
+    border: 1px solid $colorOrange;
+    color: $colorOrange;
+    outline: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .intro {
+    background-position: 65% 0;
+    min-height: 600px;
+    &__title {
+      max-width: 780px;
+      margin-bottom: 28px;
+    }
+    &__btns {
+      flex-direction: column;
+    }
+    &__btn-first {
+      margin-right: 0;
+      margin-bottom: 30px;
+      @include text(15px, 18px, 500, $colorWhite);
+    }
+    &__btn-second {
+      @include text(15px, 18px, 500, $colorWhite);
+    }
+  }
+}
